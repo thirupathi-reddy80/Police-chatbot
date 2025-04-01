@@ -28,6 +28,6 @@ This project is a Flask-based chatbot that provides information related to polic
 
 Here are some screenshots of the application:
 
-![Login page](images/loginpage.png)
+![Login page](static/loginpage.png)
 ![FIR Filing Process](images/fir_filing.png)
 ![Emergency Contacts](images/emergency_contacts.png)

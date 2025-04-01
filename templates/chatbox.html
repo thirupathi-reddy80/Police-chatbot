@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CopBotChatbox</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #c62828;
+            --accent-color: #f5f5f5;
+            --text-color: #424242;
+            --light-gray: #e0e0e0;
+            --dark-gray: #757575;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+            color: var(--text-color);
+            line-height: 1.6;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(90deg, var(--primary-color), #303f9f);
+            color: var(--white);
+            position: relative;
+        }
+        
+        .header h1 {
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .header-button {
+            background-color: rgba(255, 255, 255, 0.15);
+            border: none;
+            border-radius: 0.25rem;
+            padding: 0.5rem;
+            color: var(--white);
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .header-button:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+        
+        .profile-menu {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: var(--white);
+            min-width: 160px;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            border-radius: 0.25rem;
+            margin-top: 0.5rem;
+        }
+        
+        .profile-dropdown a {
+            color: var(--text-color);
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.2s;
+        }
+        
+        .profile-dropdown a:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        .chat-box {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            background-color: #f5f7fa;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .chat-message {
+            max-width: 80%;
+            padding: 0.8rem 1.2rem;
+            border-radius: 1rem;
+            position: relative;
+            word-wrap: break-word;
+        }
+        
+        .bot-message {
+            align-self: flex-start;
+            background-color: var(--white);
+            border-bottom-left-radius: 0.2rem;
+            box-shadow: var(--shadow);
+            font-size: 0.95rem;
+        }
+        
+        .user-message {
+            align-self: flex-end;
+            background-color: #e3f2fd;
+            border-bottom-right-radius: 0.2rem;
+            box-shadow: var(--shadow);
+            font-size: 0.95rem;
+        }
+        
+        .default-sentence {
+            align-self: center;
+            background-color: var(--white);
+            padding: 0.7rem 1.2rem;
+            margin: 0.3rem 0;
+            border-radius: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+            text-align: center;
+            border: 1px solid var(--light-gray);
+            font-size: 0.9rem;
+        }
+        
+        .default-sentence:hover {
+            background-color: #e8eaf6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .input-container {
+            display: flex;
+            padding: 0.8rem;
+            background-color: var(--white);
+            border-top: 1px solid var(--light-gray);
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        #user-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 1.5rem;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border 0.2s ease;
+        }
+        
+        #user-input:focus {
+            border-color: var(--primary-color);
+        }
+        
+        .action-button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 2.8rem;
+            height: 2.8rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        
+        .action-button:hover {
+            background-color: #303f9f;
+        }
+        
+        .action-button i {
+            font-size: 1.1rem;
+        }
+        
+        .speech-controls {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .bot-message-with-controls {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+        }
+        
+        .tts-button {
+            background-color: transparent;
+            color: var(--primary-color);
+            width: 2rem;
+            height: 2rem;
+            align-self: flex-end;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .tts-button:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background-color: var(--white);
+        }
+        
+        .speaking-animation {
+            display: inline-block;
+            position: relative;
+        }
+        
+        .speaking-animation i {
+            position: relative;
+        }
+        
+        .speaking-animation::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            background-color: rgba(26, 35, 126, 0.2);
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 0.8rem 1rem;
+            }
+            
+            .header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .header-actions {
+                gap: 0.5rem;
+            }
+            
+            .chat-box {
+                padding: 1rem;
+            }
+            
+            .chat-message {
+                max-width: 90%;
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .default-sentence {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+                max-width: 90%;
+            }
+            
+            .input-container {
+                padding: 0.7rem;
+            }
+            
+            .action-button {
+                width: 2.6rem;
+                height: 2.6rem;
+            }
+            
+            .bot-message h3 {
+                font-size: 1rem;
+            }
+            
+            .profile-dropdown {
+                right: -10px;
+                min-width: 140px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="chat-container" id="chat-container">
+        <div class="header">
+            <h1> CYBERCOP-AI </h1>
+            <div class="header-actions">
+                <button class="header-button" onclick="toggleFullscreen()" aria-label="Toggle fullscreen">
+                    <i class="fas fa-expand" id="fullscreen-icon"></i>
+                </button>
+                <div class="profile-menu">
+                    <button class="header-button" onclick="toggleProfileMenu()" aria-label="Profile options">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <a href="#" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                    <button class="header-button" onclick="showNearbyPoliceStations()" aria-label="Show nearby police stations">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-box" id="chat-box" aria-live="polite" role="alert">
+            <div class="bot-message-with-controls">
+                <div class="chat-message bot-message" id="welcome-message">
+                    Welcome to CopBotChatbox! How can I assist you today?
+                </div>
+                <button class="tts-button" id="welcome-tts" onclick="toggleSpeech('Welcome to CopBotChatbox! How can I assist you today?', 'welcome-tts')" aria-label="Read aloud">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Type your message here..." aria-label="Message input">
+            <button class="action-button" onclick="sendMessage()" aria-label="Send message">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+            <button class="action-button" onclick="startSpeechRecognition()" aria-label="Voice input">
+                <i class="fas fa-microphone"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentUtterance = null;
+        let isSpeaking = false;
+        let speechQueue = [];
+        const defaultSentences = [
+            "How to file complaints and FIRs?",
+            "What are the procedures for police investigation?",
+            "How to contact emergency helplines?",
+            "What are the various sections of law and punishments?"
+        ];
+
+        // Function to handle page refresh and stop speech
+        window.addEventListener('beforeunload', function() {
+            stopAllSpeech();
+        });
+        
+        // Initialize speech synthesis when the page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            stopAllSpeech();
+        });
+
+        // Function to format structured text with points
+        function formatStructuredResponse(text) {
+            const lines = text.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+            let formattedResponse = '<div>';
+            
+            lines.forEach(line => {
+                if (line.match(/\*\*(.*?):\*\*/)) {
+                    formattedResponse += `<h3>${line.replace(/\*\*(.*?):\*\*/, '$1:')}</h3>`;
+                } else {
+                    if (line.startsWith('* ') || line.startsWith('• ')) {
+                        formattedResponse += `<li>${line.replace(/^[•*-]\s+/, '')}</li>`;
+                    } else {
+                        formattedResponse += `<p>${line}</p>`;
+                    }
+                }
+            });
+            
+            formattedResponse += '</div>';
+            return formattedResponse;
+        }
+
+        function filterDefaultSentences(query) {
+            const filteredSentences = defaultSentences.filter(sentence => 
+                sentence.toLowerCase().includes(query.toLowerCase())
+            );
+            displayFilteredSentences(filteredSentences);
+        }
+
+        function displayFilteredSentences(sentences) {
+            const chatBox = document.getElementById('chat-box');
+            const existingSentences = document.querySelectorAll('.default-sentence');
+            existingSentences.forEach(sentence => sentence.remove());
+
+            sentences.forEach(sentence => {
+                const highlightedSentence = highlightMatchedText(sentence, document.getElementById('user-input').value);
+                const sentenceElement = document.createElement('div');
+                sentenceElement.className = 'default-sentence';
+                sentenceElement.innerHTML = highlightedSentence; // Use innerHTML to allow HTML tags
+                sentenceElement.onclick = () => sendMessage(sentence);
+                chatBox.appendChild(sentenceElement);
+            });
+        }
+
+        function highlightMatchedText(sentence, query) {
+            const regex = new RegExp(`(${query})`, 'gi');
+            return sentence.replace(regex, '<strong>$1</strong>');
+        }
+
+        function sendMessage(userInput) {
+            if (!userInput) {
+                userInput = document.getElementById('user-input').value;
+                if (userInput.trim() === "") return;
+            }
+
+            // Add user message to chat box
+            const chatBox = document.getElementById('chat-box');
+            const userMessage = document.createElement('div');
+            userMessage.className = 'chat-message user-message';
+            userMessage.textContent = userInput;
+            chatBox.appendChild(userMessage);
+
+            // Clear input field
+            document.getElementById('user-input').value = '';
+
+            // Show typing indicator
+            showTypingIndicator();
+
+            // Scroll to the bottom after adding user message
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Send user input to the backend
+            fetch('/ask', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ user_input: userInput }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Remove typing indicator
+                removeTypingIndicator();
+                
+                const responses = data.response;
+                const fullResponse = responses.join('\n'); // Join responses with new lines
+                
+                // Create a unique ID for this message
+                const messageId = 'msg-' + Date.now();
+                
+                // Create container for message and TTS button
+                const messageContainer = document.createElement('div');
+                messageContainer.className = 'bot-message-with-controls';
+                
+                // Create bot message with formatted content
+                const botMessage = document.createElement('div');
+                botMessage.className = 'chat-message bot-message';
+                botMessage.id = messageId;
+                
+                // Format the response to handle structured content
+                botMessage.innerHTML = formatStructuredResponse(fullResponse);
+                
+                messageContainer.appendChild(botMessage);
+                
+                // Create TTS button with unique ID
+                const ttsButton = document.createElement('button');
+                ttsButton.className = 'tts-button';
+                ttsButton.id = messageId + '-tts';
+                ttsButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+                ttsButton.setAttribute('aria-label', 'Read aloud');
+                ttsButton.onclick = () => toggleSpeech(fullResponse, messageId + '-tts');
+                messageContainer.appendChild(ttsButton);
+                
+                chatBox.appendChild(messageContainer);
+                
+                // Scroll to the bottom after adding bot message
+                chatBox.scrollTop = chatBox.scrollHeight;
+            })
+            .catch(error => {
+                removeTypingIndicator();
+                console.error('Error:', error);
+                
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'chat-message bot-message';
+                errorMessage.textContent = "Sorry, I couldn't process your request. Please try again.";
+                chatBox.appendChild(errorMessage);
+                
+                chatBox.scrollTop = chatBox.scrollHeight;
+            });
+        }
+        function showNearbyPoliceStations() {
+            const chatBox = document.getElementById('chat-box');
+            const policeStations = [
+                {
+                    name: "Police station Mylavaram",
+                    link: "https://maps.app.goo.gl/deLA8pStEuTj7gmr9"
+                },
+                {
+                    name: "Circle inspector of Police Mylavaram",
+                    link: "https://maps.app.goo.gl/yoMhkJu5uU7FFJVq6"
+                },
+                {
+                    name: "Police Sub Control, Mylavaram",
+                    link: "https://maps.app.goo.gl/Y4RBPxupWUb6SjN9A"
+                }
+            ];
+
+            const messageContainer = document.createElement('div');
+            messageContainer.className = 'chat-message bot-message';
+            messageContainer.innerHTML = "<strong>Nearby Police Stations:</strong><br>";
+
+            policeStations.forEach(station => {
+                messageContainer.innerHTML += `<a href="${station.link}" target="_blank">${station.name}</a><br>`;
+            });
+
+            chatBox.appendChild(messageContainer);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+
+        function showTypingIndicator() {
+            const chatBox = document.getElementById('chat-box');
+            const typingIndicator = document.createElement('div');
+            typingIndicator.className = 'chat-message bot-message typing-indicator';
+            typingIndicator.id = 'typing-indicator';
+            typingIndicator.innerHTML = '<div class="dot-flashing"></div>';
+            typingIndicator.style.display = 'flex';
+            typingIndicator.style.alignItems = 'center';
+            typingIndicator.style.justifyContent = 'center';
+            typingIndicator.style.gap = '4px';
+            
+            // Create the dots
+            for (let i = 0; i < 3; i++) {
+                const dot = document.createElement('div');
+                dot.style.width = '8px';
+                dot.style.height = '8px';
+                dot.style.backgroundColor = '#777';
+                dot.style.borderRadius = '50%';
+                dot.style.opacity = '0.6';
+                dot.style.animation = `pulse 1s infinite ${i * 0.2}s`;
+                typingIndicator.appendChild(dot);
+            }
+            
+            // Add the keyframes for the animation
+            if (!document.getElementById('dot-keyframes')) {
+                const style = document.createElement('style');
+                style.id = 'dot-keyframes';
+                style.innerHTML = `
+                    @keyframes pulse {
+                        0%, 100% { opacity: 0.6; transform: scale(1); }
+                        50% { opacity: 1; transform: scale(1.2); }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            chatBox.appendChild(typingIndicator);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function startSpeechRecognition() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            recognition.interimResults = false;
+            
+            // Show a microphone active indicator
+            const userInput = document.getElementById('user-input');
+            userInput.placeholder = "Listening...";
+            userInput.style.borderColor = "#1a237e";
+            
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('user-input').value = transcript;
+                userInput.placeholder = "Type your message here...";
+                userInput.style.borderColor = "";
+                sendMessage(transcript);
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Speech recognition error:', event.error);
+                userInput.placeholder = "Type your message here...";
+                userInput.style.borderColor = "";
+            };
+            
+            recognition.onend = function() {
+                userInput.placeholder = "Type your message here...";
+                userInput.style.borderColor = "";
+            };
+
+            recognition.start();
+        }
+
+        function toggleSpeech(text, buttonId) {
+            const button = document.getElementById(buttonId);
+            
+            // If already speaking this text, stop it
+            if (isSpeaking && currentUtterance && button.querySelector('i').className.includes('fa-stop')) {
+                stopSpeech();
+                return;
+            }
+            
+            // Stop any other ongoing speech
+            stopAllSpeech();
+            
+            // Reset all button icons
+            document.querySelectorAll('.tts-button i').forEach(icon => {
+                icon.className = 'fas fa-volume-up';
+                icon.parentElement.classList.remove('speaking-animation');
+            });
+            
+            // Clean text for speech (remove markdown/formatting)
+            const cleanText = text.replace(/\*\*/g, '').replace(/<[^>]*>/g, '');
+            
+            // Create a new speech synthesis utterance
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            
+            // Set properties
+            utterance.lang = 'en-US';
+            utterance.rate = 1.0;
+            utterance.pitch = 1.0;
+            
+            // Store the utterance
+            currentUtterance = utterance;
+            isSpeaking = true;
+            
+            // Change the button icon to stop
+            button.querySelector('i').className = 'fas fa-stop';
+            button.classList.add('speaking-animation');
+            
+            // When speech ends
+            utterance.onend = function() {
+                resetSpeechState();
+            };
+            
+            // Handle errors
+            utterance.onerror = function(event) {
+                console.error('Speech synthesis error:', event.error);
+                resetSpeechState();
+            };
+            
+            // Start speaking
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        function stopSpeech() {
+            if (currentUtterance) {
+                window.speechSynthesis.cancel();
+                resetSpeechState();
+            }
+        }
+        
+        function stopAllSpeech() {
+            window.speechSynthesis.cancel();
+            resetSpeechState();
+        }
+        
+        function resetSpeechState() {
+            // Reset all buttons and states
+            document.querySelectorAll('.tts-button i').forEach(icon => {
+                icon.className = 'fas fa-volume-up';
+                icon.parentElement.classList.remove('speaking-animation');
+            });
+            
+            isSpeaking = false;
+            currentUtterance = null;
+        }
+
+        function toggleFullscreen() {
+            const chatContainer = document.getElementById('chat-container');
+            const fullscreenIcon = document.getElementById('fullscreen-icon');
+            
+            if (chatContainer.classList.contains('fullscreen')) {
+                chatContainer.classList.remove('fullscreen');
+                fullscreenIcon.className = 'fas fa-expand';
+            } else {
+                chatContainer.classList.add('fullscreen');
+                fullscreenIcon.className = 'fas fa-compress';
+            }
+        }
+        
+        function toggleProfileMenu() {
+            document.getElementById("profileDropdown").classList.toggle("show");
+        }
+        
+        function handleLogout() {
+            // Clear any session data
+            localStorage.removeItem('userSession');
+            sessionStorage.removeItem('userSession');
+            
+            // Redirect to login page
+            window.location.href = '/';
+        }
+        
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.header-button') && !event.target.matches('.fas')) {
+                const dropdowns = document.getElementsByClassName("profile-dropdown");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        // Handle the Enter key press
+        document.getElementById('user-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Clear input function
+        function clearInput() {
+            document.getElementById('user-input').value = '';
+            filterDefaultSentences(''); // Reset the filter
+        }
+
+        // Filter default sentences on input
+        document.getElementById('user-input').addEventListener('input', function() {
+            const userInput = this.value;
+            filterDefaultSentences(userInput);
+        });
+
+        // Display default sentences on page load
+        window.onload = function() {
+            displayFilteredSentences(defaultSentences);
+            
+            // Add visibility change event to handle page refresh or tab switching
+            document.addEventListener('visibilitychange', function() {
+                if (document.visibilityState === 'hidden') {
+                    stopAllSpeech();
+                }
+            });
+        };
+    </script>
+</body>
+</html>

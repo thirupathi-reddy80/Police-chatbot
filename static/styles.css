@@ -1,0 +1,218 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+}
+
+/* Chat Container */
+.chat-container {
+    flex: 1; /* Allow the chat container to grow and fill the available space */
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    animation: fadeIn 1s ease-in-out;
+    display: flex;
+    flex-direction: column; /* Stack header, chat box, and input vertically */
+}
+
+/* Header with Police-themed Animation */
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.header h1 {
+    color: #1e3c72;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.police-light {
+    width: 20px;
+    height: 20px;
+    background-color: #ff0000;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    animation: policeLight 1s infinite alternate;
+}
+.container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between the two sides */
+    align-items: center; /* Center items vertically */
+    height: 100vh; /* Full height of the viewport */
+}
+
+.form-side {
+    flex: 1; /* Takes up one portion of the space */
+    padding: 20px; /* Padding for aesthetics */
+}
+
+.image-side {
+    flex: 1; /* Takes up one portion of the space */
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+}
+
+.image-side img {
+    max-width: 100%; /* Make sure the image is responsive */
+    height: auto; /* Maintain aspect ratio */
+}
+
+@keyframes policeLight {
+    0% {
+        background-color: #ff0000;
+    }
+    100% {
+        background-color: #0000ff;
+    }
+}
+
+/* Chat Box */
+.chat-box {
+    flex: 1; /* Allow the chat box to grow and fill available space */
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+/* Chat Messages */
+.chat-message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+    animation: fadeInMessage 0.5s ease-in-out;
+}
+
+.user-message {
+    background-color: #1e3c72;
+    color: #fff;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.bot-message {
+    background-color: #e9ecef;
+    color: #333;
+    align-self: flex-start;
+    margin-right: auto;
+}
+
+/* Input Container */
+/* Input Container */
+.input-container {
+    display: flex;
+    gap: 10px;
+}
+
+.input-textarea {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    resize: none; /* Prevent resizing */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+.input-textarea:focus {
+    border-color: #1e3c72;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #1e3c72;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2a5298;
+}
+/* Footer Styles */
+.footer {
+    display: flex;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+}
+
+.footer input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.footer input[type="text"]:focus {
+    border-color: #1e3c72;
+}
+
+.footer button {
+    padding: 10px 20px;
+    background-color: #1e3c72;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.footer button:hover {
+    background-color: #2a5298;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInMessage {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

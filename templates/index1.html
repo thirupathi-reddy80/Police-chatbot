@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles1.css') }}">
+    <title>Police Chatbot login and registration form </title>
+</head>
+<body>
+    <!--=============== LOGIN IMAGE ===============-->
+    <svg class="login__blob" viewBox="0 0 566 840" xmlns="http://www.w3.org/2000/svg">
+        <mask id="mask0" mask-type="alpha">
+            <path d="M342.407 73.6315C388.53 56.4007 394.378 17.3643 391.538 
+            0H566V840H0C14.5385 834.991 100.266 804.436 77.2046 707.263C49.6393 
+            591.11 115.306 518.927 176.468 488.873C363.385 397.026 156.98 302.824 
+            167.945 179.32C173.46 117.209 284.755 95.1699 342.407 73.6315Z"/>
+        </mask>
+        <g mask="url(#mask0)">
+            <path d="M342.407 73.6315C388.53 56.4007 394.378 17.3643 391.538 
+            0H566V840H0C14.5385 834.991 100.266 804.436 77.2046 707.263C49.6393 
+            591.11 115.306 518.927 176.468 488.873C363.385 397.026 156.98 302.824 
+            167.945 179.32C173.46 117.209 284.755 95.1699 342.407 73.6315Z"/>
+            <image class="login__img" href="static/login-bg.avif"/>
+        </g>
+    </svg>      
+
+    <!--=============== LOGIN ===============-->
+    <div class="login container grid" id="loginAccessRegister">
+        <!--===== LOGIN ACCESS =====-->
+        <div class="login__access">
+            <h1 class="login__title">Login to Police Chatbot Portal</h1>
+            <div class="login__area">
+                <form id="loginForm" class="login__form">
+                    <div class="login__content grid">
+                        <div class="login__box">
+                            <input type="email" id="email" required placeholder=" " class="login__input">
+                            <label for="email" class="login__label">Email</label>
+                            <i class="ri-mail-fill login__icon"></i>
+                        </div>
+                        <div class="login__box">
+                            <input type="password" id="password" required placeholder=" " class="login__input">
+                            <label for="password" class="login__label">Password</label>
+                            <i class="ri-eye-off-fill login__icon login__password" id="loginPassword"></i>
+                        </div>
+                    </div>
+                    <button type="submit" class="login__button">Login</button>
+                </form>
+                <p class="login__switch">
+                    Don't have an account? 
+                    <button id="loginButtonRegister">Create Account</button>
+                </p>
+            </div>
+        </div>
+
+        <!--===== LOGIN REGISTER =====-->
+<div class="login__register">
+    <h1 class="login__title">Register for Police Chatbot Services</h1>
+    <div class="login__area">
+        <form id="registerForm" class="login__form">
+            <div class="login__content grid">
+                <div class="login__group grid">
+                    <div class="login__box">
+                        <input type="text" id="names" required placeholder=" " class="login__input">
+                        <label for="names" class="login__label">Names</label>
+                        <i class="ri-id-card-fill login__icon"></i>
+                    </div>
+                    <div class="login__box">
+                        <input type="text" id="surnames" required placeholder=" " class="login__input">
+                        <label for="surnames" class="login__label">Surnames</label>
+                        <i class="ri-id-card-fill login__icon"></i>
+                    </div>
+                </div>
+                <div class="login__box">
+                    <input type="email" id="emailCreate" required placeholder=" " class="login__input">
+                    <label for="emailCreate" class="login__label">Email</label>
+                    <i class="ri-mail-fill login__icon"></i>
+                </div>
+                <div class="login__box">
+                    <input type="password" id="passwordCreate" required placeholder=" " class="login__input">
+                    <label for="passwordCreate" class="login__label">Password</label>
+                    <i class="ri-eye-off-fill login__icon login__password" id="loginPasswordCreate"></i>
+                </div>
+
+                <!-- New Fields for Phone Number and Address -->
+                <div class="login__box">
+                    <input type="tel" id="phone" required placeholder=" " class="login__input">
+                    <label for="phone" class="login__label">Phone Number</label>
+                    <i class="ri-phone-fill login__icon"></i>
+                </div>
+                <div class="login__box">
+                    <input type="text" id="address" required placeholder=" " class="login__input">
+                    <label for="address" class="login__label">Address</label>
+                    <i class="ri-map-pin-fill login__icon"></i>
+                </div>
+            </div>
+            <button type="submit" class="login__button">Create account</button>
+        </form>
+        <p class="login__switch">
+            Already have an account? 
+            <button id="loginButtonAccess">Log In</button>
+        </p>
+    </div>
+</div>
+
+    <!--=============== MAIN JS ===============-->
+    <script>
+        const passwordAccess = (loginPass, loginEye) => {
+            const input = document.getElementById(loginPass),
+                  iconEye = document.getElementById(loginEye);
+            iconEye.addEventListener('click', () => {
+                input.type === 'password' ? input.type = 'text' : input.type = 'password';
+                iconEye.classList.toggle('ri-eye-fill');
+                iconEye.classList.toggle('ri-eye-off-fill');
+            });
+        };
+        passwordAccess('password', 'loginPassword');
+
+        const passwordRegister = (loginPass, loginEye) => {
+            const input = document.getElementById(loginPass),
+                  iconEye = document.getElementById(loginEye);
+            iconEye.addEventListener('click', () => {
+                input.type === 'password' ? input.type = 'text' : input.type = 'password';
+                iconEye.classList.toggle('ri-eye-fill');
+                iconEye.classList.toggle('ri-eye-off-fill');
+            });
+        };
+        passwordRegister('passwordCreate', 'loginPasswordCreate');
+
+        const loginAcessRegister = document.getElementById('loginAccessRegister'),
+              buttonRegister = document.getElementById('loginButtonRegister'),
+              buttonAccess = document.getElementById('loginButtonAccess');
+
+        buttonRegister.addEventListener('click', () => {
+            loginAcessRegister.classList.add('active');
+            document.querySelector('.login__access').style.display = 'none';
+            document.querySelector('.login__register').style.display = 'block';
+        });
+
+        buttonAccess.addEventListener('click', () => {
+            loginAcessRegister.classList.remove('active');
+            document.querySelector('.login__register').style.display = 'none';
+            document.querySelector('.login__access').style.display = 'block';
+        });
+
+        const validateEmail = (email) => {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        };
+
+        const validatePassword = (password) => {
+            const regex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+            return regex.test(password);
+        };
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                alert('Please fill the form first');
+                return;
+            }
+
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = '/chat'; // Redirect to chatbox
+                } else {
+                    alert(data.message); // Show error message
+                }
+            });
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const names = document.getElementById('names').value;
+    const surnames = document.getElementById('surnames').value;
+    const emailCreate = document.getElementById('emailCreate').value;
+    const passwordCreate = document.getElementById('passwordCreate').value;
+    const phone = document.getElementById('phone').value; // New field
+    const address = document.getElementById('address').value; // New field
+
+    // Check if all fields are filled
+    if (!names || !surnames || !emailCreate || !passwordCreate || !phone || !address) {
+        alert('Please fill the form first');
+        return;
+    }
+
+    // Validate names length
+    if (names.length > 20) {
+        alert('Names should not exceed 20 characters');
+        return;
+    }
+
+    // Validate email format
+    if (!validateEmail(emailCreate)) {
+        alert('Please enter a valid email address');
+        return;
+    }
+
+    // Validate password format
+    if (!validatePassword(passwordCreate)) {
+        alert('Password must be at least 8 characters long, contain at least one uppercase letter and one special symbol');
+        return;
+    }
+
+    // Validate phone number (Indian format: starts with 9, 7, 6, or 8 and followed by 9 digits)
+    if (!/^[6789]\d{9}$/.test(phone)) {
+        alert('Invalid Phone number format');
+        return;
+    }
+
+    // If all validations pass, proceed with the fetch request
+    fetch('/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ names, surnames, email: emailCreate, password: passwordCreate, phone, address }) // Include new fields
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Account created successfully! You can now log in.');
+            loginAcessRegister.classList.remove('active');
+            document.querySelector('.login__register').style.display = 'none';
+            document.querySelector('.login__access').style.display = 'block';
+        } else {
+            alert(data.message); // Show error message
+        }
+    });
+});
+    </script>
+</body>
+</html>

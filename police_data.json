@@ -1,0 +1,307 @@
+{
+    "general_conversation": {
+        "greetings": [
+            "Hello! How can I assist you today?",
+            "Hi there! How can I help you?",
+            "Welcome! What can I do for you?"
+        ],
+        "introduction": [
+            "I am CopBot, your virtual assistant for police-related queries.",
+            "I'm here to help you with information about FIR filing, emergency contacts, police procedures, and more.",
+            "I am an AI-powered chatbot designed to assist you with police and legal matters."
+        ],
+        "farewell": [
+            "Goodbye! Stay safe.",
+            "Have a great day!",
+            "Take care!"
+        ],
+        "thanks": [
+            "You're welcome!",
+            "Happy to help!",
+            "Glad I could assist you!"
+        ],
+        "availability": [
+            "Yes, I am available 24/7 to assist you with police-related queries.",
+            "I am here round the clock to help you. Feel free to ask me anything!",
+            "You can reach out to me anytime, day or night. I'm always here to help."
+        ],
+        "capabilities": [
+            "I can help you with FIR filing, emergency contacts, police procedures, legal provisions, and more.",
+            "I provide information on FIR filing, emergency contacts, investigation procedures, and legal sections.",
+            "Ask me about FIR filing, emergency numbers, police recruitment, or legal punishments."
+        ]
+    },
+    "emergency_contacts": {
+            "national": {
+                "police": "100",
+                "ambulance": "102",
+                "fire_brigade": "101",
+                "women_helpline": "1091",
+                "child_helpline": "1098"
+            },
+            "state_specific": {
+                "andhrapradesh": 
+                {
+                    "police_control_room": "100",
+                    "traffic_helpline": "103",
+                    "women_helpline": "1091"
+                },
+                "arunachalpradesh":
+                 {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "1091"
+                },
+                "assam": 
+                {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "181"
+                },
+                "bihar":
+                 {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "1091"
+                },
+                "chhattisgarh": 
+                {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "1091"
+                },
+                "goa": 
+                {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "1091"
+                },
+                "gujarat":
+                 {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "181"
+                },
+                "haryana":
+                 {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "1091"
+                },
+                "himachal pradesh":
+                 {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "1091"
+                },
+                "jharkhand": 
+                {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "181"
+                },
+                "karnataka":
+                {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "1091"
+                },
+                "kerala": 
+                {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "1091"
+                },
+                "madhya pradesh":
+                 {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "1091"
+                },
+                "maharashtra": 
+                {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "1091"
+                },
+                "manipur": 
+                {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "181"
+                },
+                "meghalaya": 
+                {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "181"
+                },
+                "mizoram": 
+                {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "181"
+                },
+                "nagaland":
+                 {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "181"
+                },
+                "odisha": 
+                {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "181"
+                },
+                "punjab": 
+                {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "1091"
+                },
+                "rajasthan":
+                 {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "1091"
+                },
+                "sikkim": 
+                {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "181"
+                },
+                "tamilnadu": 
+                {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "109 1"
+                },
+                "telangana":
+                 {
+                    "police_control_room": "100",
+                    "traffic_helpline": "103",
+                    "women_helpline": "1091"
+                },
+                "tripura":
+                {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "181"
+                },
+                "uttarpradesh": 
+                {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "1090"
+                },
+                "uttarakhand":
+                 {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "1091"
+                },
+                "westbengal":
+                 {
+                    "police_control_room": "100",
+                    "traffic_helpline": "1073",
+                    "women_helpline": "1091"
+                }
+            }
+    },
+    "investigation_procedures": {
+        "steps": "1. FIR is filed.\n2. Police gather evidence.\n3. Witnesses are interviewed.\n4. Case is presented in court.\n5. Trial is conducted, and judgment is delivered.",
+        "rights_of_accused": [
+            "Right to remain silent.",
+            "Right to legal representation.",
+            "Right to a fair trial.",
+            "Right to be informed of the charges against them."
+        ],
+        "rights_of_victims": [
+            "Right to file a complaint.",
+            "Right to protection.",
+            "Right to compensation.",
+            "Right to be heard in court proceedings."
+        ]
+    },
+    "legal_provisions": {
+        "sections": [
+            {
+                "section": "302",
+                "crime": "Murder",
+                "punishment": "Life imprisonment or death."
+            },
+            {
+                "section": "376",
+                "crime": "Rape",
+                "punishment": "10+ years imprisonment."
+            },
+            {
+                "section": "420",
+                "crime": "Cheating",
+                "punishment": "Up to 7 years imprisonment."
+            },
+            {
+                "section": "498A",
+                "crime": "Domestic Violence",
+                "punishment": "Up to 3 years imprisonment."
+            },
+            {
+                "section": "307",
+                "crime": "Attempt to Murder",
+                "punishment": "Up to 10 years imprisonment.",
+                "procedure": "FIR is filed, investigation is conducted, and the case is tried in a Sessions Court."
+            },
+            {
+                "section": "376D",
+                "crime": "Gang Rape",
+                "punishment": "Life imprisonment.",
+                "procedure": "FIR is filed, medical examination is conducted, and the case is tried in a Fast Track Court."
+            },
+            {
+                "section": "354",
+                "crime": "Assault or Criminal Force to Woman with Intent to Outrage Her Modesty",
+                "punishment": "Up to 3 years imprisonment.",
+                "procedure": "FIR is filed, investigation is conducted, and the case is tried in a Magistrate Court."
+            },
+            {
+                "section": "66C",
+                "crime": "Identity Theft",
+                "punishment": "Up to 3 years imprisonment and/or fine.",
+                "procedure": "FIR is filed, investigation is conducted, and the case is tried in a Cyber Crime Court."
+            },
+            {
+                "section": "66E",
+                "crime": "Violation of Privacy",
+                "punishment": "Up to 3 years imprisonment and/or fine.",
+                "procedure": "FIR is filed, investigation is conducted, and the case is tried in a Cyber Crime Court."
+            }
+        ]
+    },
+    "common_queries": {
+        "lost_and_found": "Visit the nearest police station and file a lost report. Provide details of the lost item.",
+        "cyber_crime": "Report cyber crimes at https://cybercrime.gov.in or visit the nearest cyber crime cell.",
+        "traffic_violations": [
+            "Q: What is the penalty for speeding?\nA: Fines range from ₹1,000 to ₹2,000 depending on the severity.",
+            "Q: What if I lose my driving license?\nA: Apply for a duplicate license at the RTO with an FIR copy."
+        ],
+        "passport_verification": "Passport verification is done by local police. Contact your nearest police station for details.",
+        "tenant_verification": "Landlords can request tenant verification at the local police station.",
+        "legal_aid": "If you cannot afford a lawyer, you can apply for legal aid through the National Legal Services Authority (NALSA) or your local legal services authority.",
+        "bail_process": "To apply for bail, you must file a bail application in the court where the case is being heard. The court will then decide based on the merits of the case."
+    },
+    "citizen_rights": {
+        "right_to_information": "You can file an RTI application to access information from government departments.",
+        "right_to_self_defense": "You have the right to defend yourself or others from harm, but excessive force is punishable.",
+        "right_to_privacy": "Your personal information cannot be disclosed without your consent, except in legal cases."
+    },
+    "police_recruitment": {
+        "eligibility": "Age: 18-25 years, Education: 10th/12th/Graduate (varies by post), Physical Standards: Height, Chest, and Eye Sight.",
+        "process": "1. Written Exam\n2. Physical Test\n3. Medical Test\n4. Interview",
+        "faq": [
+            "Q: Is there a relaxation in age for reserved categories?\nA: Yes, age relaxation is provided as per government norms.",
+            "Q: Can women apply for all posts?\nA: Yes, women are eligible for all posts in the police department."
+        ]
+    }
+}

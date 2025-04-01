@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map of Police Stations</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script>
+        function findNearbyPoliceStations() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+
+function showPosition(position) {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+
+    const map = new google.maps.Map(document.createElement('div'));
+    const service = new google.maps.places.PlacesService(map);
+
+    service.nearbySearch({
+        location: { lat: lat, lng: lon },
+        radius: 5000,
+        type: ['police']
+    }, (results, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 0) {
+            const chatBox = document.getElementById('chat-box');
+            const messageContainer = document.createElement('div');
+            messageContainer.className = 'bot-message-with-controls';
+
+            const botMessage = document.createElement('div');
+            botMessage.className = 'chat-message bot-message';
+            botMessage.innerHTML = '<strong>Nearby Police Stations:</strong><ul>';
+
+            results.forEach(station => {
+                botMessage.innerHTML += `<li>${station.name} - ${station.vicinity}</li>`;
+            });
+            botMessage.innerHTML += '</ul>';
+
+            messageContainer.appendChild(botMessage);
+            chatBox.appendChild(messageContainer);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        } else {
+            alert("No nearby police stations found.");
+        }
+    });
+}
+    </script>
+</body>
+</html>

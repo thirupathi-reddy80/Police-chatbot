@@ -21,7 +21,7 @@ This project is a Flask-based chatbot that provides information related to polic
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/police-ipc-chatbot.git
+   git clone https://github.com/thirupathi-reddy80/police-ipc-chatbot.git
    cd project
 
 ## Screenshots
